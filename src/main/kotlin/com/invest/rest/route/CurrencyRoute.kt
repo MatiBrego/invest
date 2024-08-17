@@ -17,4 +17,11 @@ class CurrencyRoute
         ): Double {
             return dollarCalculator.toDollars(amount, quotation)
         }
+
+        override fun toPeso(
+            amount: Double,
+            quotation: Quotation,
+        ): Double {
+            return dollarCalculator.toPesos(amount, quotation)
+        }
     }

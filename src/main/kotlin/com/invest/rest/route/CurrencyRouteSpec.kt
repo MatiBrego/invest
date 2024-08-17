@@ -12,4 +12,10 @@ interface CurrencyRouteSpec {
         @RequestParam("amount") amount: Double,
         @RequestParam("quotation") quotation: Quotation,
     ): Double
+
+    @GetMapping("/peso")
+    fun toPeso(
+        @RequestParam("amount") amount: Double,
+        @RequestParam("quotation") quotation: Quotation,
+    ): Double
 }
