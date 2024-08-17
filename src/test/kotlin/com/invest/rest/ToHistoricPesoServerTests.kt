@@ -11,19 +11,26 @@ import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.junit.jupiter.SpringExtension
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.get
+import java.time.LocalDate
 
 @SpringBootTest
 @ExtendWith(SpringExtension::class)
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
-class ToPesoServerTests
+class ToHistoricPesoServerTests
     @Autowired
     constructor(val mockMvc: MockMvc) {
-        private val baseUrl = "/v1/currency/peso"
+        private val baseUrl = "/v1/currency/historic/peso"
 
         @Test
-        fun `to peso endpoint exists`() {
-            val uriWithParam = withAmountAndQuotation(baseUrl, 1.0, Quotation.CCL)
+        fun `to historic peso endpoint exists`() {
+            val uriWithParam =
+                withAmountQuotationAndDate(
+                    baseUrl,
+                    100.0,
+                    Quotation.CCL,
+                    LocalDate.of(2002, 10, 1),
+                )
             mockMvc.get(uriWithParam)
                 .andExpect {
                     status { isOk() }
@@ -31,44 +38,44 @@ class ToPesoServerTests
         }
 
         @Test
-        fun `can convert 1 dollar to peso with CCL quotation`() {
-            val dollars = 1.0
-            val quotation = Quotation.CCL
-            val uriWithParams = withAmountAndQuotation(baseUrl, dollars, quotation)
-
-            val expected = dollars * MockRateProviderBean.DOLLAR_CCL_RATE
-            mockMvc.get(uriWithParams)
-                .andExpect {
-                    status { isOk() }
-                    content {
-                        string(expected.toString())
-                    }
-                }
-        }
-
-        @Test
-        fun `can convert 2 dollars to peso with CCL quotation`() {
-            val pesos = 2.0
-            val quotation = Quotation.CCL
-            val uriWithParams = withAmountAndQuotation(baseUrl, pesos, quotation)
-
-            val expected = pesos * MockRateProviderBean.DOLLAR_CCL_RATE
-            mockMvc.get(uriWithParams)
-                .andExpect {
-                    status { isOk() }
-                    content {
-                        string(expected.toString())
-                    }
-                }
-        }
-
-        @Test
-        fun `can convert 1 dollar to peso with Blue quotation`() {
+        fun `can convert 1 dollar to peso with CCL quotation of 2002-10-01`() {
             val pesos = 1.0
-            val quotation = Quotation.BLUE
-            val uriWithParams = withAmountAndQuotation(baseUrl, pesos, quotation)
+            val quotation = Quotation.CCL
+            val date = MockRateProviderBean.date1
 
-            val expected = pesos * MockRateProviderBean.DOLLAR_BLUE_RATE
+            val uriWithParams =
+                withAmountQuotationAndDate(
+                    baseUrl,
+                    pesos,
+                    quotation,
+                    date,
+                )
+
+            val expected = pesos * MockRateProviderBean.CCLDateMap[date]!!
+            mockMvc.get(uriWithParams)
+                .andExpect {
+                    status { isOk() }
+                    content {
+                        string(expected.toString())
+                    }
+                }
+        }
+
+        @Test
+        fun `can convert 3 dollars to peso with CCL quotation of 2002-10-02`() {
+            val pesos = 3.0
+            val quotation = Quotation.CCL
+            val date = MockRateProviderBean.date2
+
+            val uriWithParams =
+                withAmountQuotationAndDate(
+                    baseUrl,
+                    pesos,
+                    quotation,
+                    date,
+                )
+
+            val expected = pesos * MockRateProviderBean.CCLDateMap[date]!!
             mockMvc.get(uriWithParams)
                 .andExpect {
                     status { isOk() }

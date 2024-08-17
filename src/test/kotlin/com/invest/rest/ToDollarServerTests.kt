@@ -19,11 +19,11 @@ import org.springframework.test.web.servlet.get
 class ToDollarServerTests
     @Autowired
     constructor(val mockMvc: MockMvc) {
-        private val baseDollarUrl = "/v1/currency/dollar"
+        private val baseUrl = "/v1/currency/dollar"
 
         @Test
         fun `to dollar endpoint exists`() {
-            val uriWithParam = withAmountAndQuotation(baseDollarUrl, 100.0, Quotation.CCL)
+            val uriWithParam = withAmountAndQuotation(baseUrl, 100.0, Quotation.CCL)
             mockMvc.get(uriWithParam)
                 .andExpect {
                     status { isOk() }
@@ -34,7 +34,7 @@ class ToDollarServerTests
         fun `can convert 100 pesos to dollar with CCL quotation`() {
             val pesos = 100.0
             val quotation = Quotation.CCL
-            val uriWithParams = withAmountAndQuotation(baseDollarUrl, pesos, quotation)
+            val uriWithParams = withAmountAndQuotation(baseUrl, pesos, quotation)
 
             val expected = pesos / MockRateProviderBean.DOLLAR_CCL_RATE
             mockMvc.get(uriWithParams)
@@ -50,7 +50,7 @@ class ToDollarServerTests
         fun `can convert 200 pesos to dollar with CCL quotation`() {
             val pesos = 200.0
             val quotation = Quotation.CCL
-            val uriWithParams = withAmountAndQuotation(baseDollarUrl, pesos, quotation)
+            val uriWithParams = withAmountAndQuotation(baseUrl, pesos, quotation)
 
             val expected = pesos / MockRateProviderBean.DOLLAR_CCL_RATE
             mockMvc.get(uriWithParams)
@@ -66,7 +66,7 @@ class ToDollarServerTests
         fun `can convert 100 pesos to dollar with Blue quotation`() {
             val pesos = 100.0
             val quotation = Quotation.BLUE
-            val uriWithParams = withAmountAndQuotation(baseDollarUrl, pesos, quotation)
+            val uriWithParams = withAmountAndQuotation(baseUrl, pesos, quotation)
 
             val expected = pesos / MockRateProviderBean.DOLLAR_BLUE_RATE
             mockMvc.get(uriWithParams)

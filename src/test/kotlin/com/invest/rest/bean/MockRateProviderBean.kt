@@ -15,18 +15,21 @@ class MockRateProviderBean {
         const val DOLLAR_CCL_RATE = 100.0
         const val DOLLAR_BLUE_RATE = 200.0
 
-        val date1 = LocalDate.of(2002, 10, 1)
-        val date2 = LocalDate.of(2002, 10, 2)
+        val date1: LocalDate = LocalDate.of(2002, 10, 1)
+        val date2: LocalDate = LocalDate.of(2002, 10, 2)
+
+        val CCLDateMap =
+            mapOf(
+                date1 to 100.0,
+                date2 to 300.0,
+            )
     }
 
     private val rateMap = mapOf(Quotation.CCL to DOLLAR_CCL_RATE, Quotation.BLUE to DOLLAR_BLUE_RATE)
     private val historicRateMap =
         mapOf(
             Quotation.CCL to
-                mapOf(
-                    date1 to 100.0,
-                    date2 to 300.0,
-                ),
+                CCLDateMap,
         )
 
     @Bean
