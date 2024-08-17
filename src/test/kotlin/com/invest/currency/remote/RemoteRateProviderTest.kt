@@ -2,9 +2,10 @@ package com.invest.currency.remote
 
 import com.invest.currency.core.Quotation
 import java.time.LocalDate
+import kotlin.test.Ignore
 import kotlin.test.Test
 
-// @Ignore("This is for experimenting purposes only")
+@Ignore("This is for experimenting purposes only")
 class RemoteRateProviderTest {
     @Test
     fun `001 provide today's rate for CLL`() {
@@ -43,11 +44,11 @@ class RemoteRateProviderTest {
     }
 
     @Test
-    fun `005 provide 01-10-2023 rate for Blue`() {
+    fun `005 provide 05-8-2024 rate for CCL`() {
         val remoteRateProvider = RemoteRateProvider()
-        val date = LocalDate.of(2023, 10, 1)
+        val date = LocalDate.of(2024, 8, 5)
 
-        val result = remoteRateProvider.getHistoricRateForQuotation(Quotation.BLUE, date)
+        val result = remoteRateProvider.getHistoricRateForQuotation(Quotation.CCL, date)
 
         println(result)
     }
