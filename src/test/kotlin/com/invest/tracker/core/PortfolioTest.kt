@@ -1,7 +1,7 @@
-package com.invest.tracker
+package com.invest.tracker.core
 
-import com.invest.tracker.instrument.Cash
-import com.invest.tracker.instrument.Stock
+import com.invest.tracker.core.instrument.Cash
+import com.invest.tracker.core.instrument.Stock
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

@@ -1,4 +1,4 @@
-package com.invest.tracker
+package com.invest.tracker.core
 
 class Portfolio(private val list: List<Holding>) {
     fun getTotalValuation(): Double {

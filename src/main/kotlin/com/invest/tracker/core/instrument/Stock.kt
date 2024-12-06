@@ -1,4 +1,4 @@
-package com.invest.tracker.instrument
+package com.invest.tracker.core.instrument
 
 class Stock(
     private val ticket: String,

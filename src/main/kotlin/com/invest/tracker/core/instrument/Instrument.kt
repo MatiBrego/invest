@@ -1,4 +1,4 @@
-package com.invest.tracker.instrument
+package com.invest.tracker.core.instrument
 
 interface Instrument {
     fun getValuation(): Double
