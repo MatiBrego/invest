@@ -6,32 +6,32 @@ class DollarCalculator(
     private val rateProvider: RateProvider,
 ) {
     fun toPesos(
-        amount: Double,
+        dollars: Dollars,
         dollarQuotation: Quotation,
-    ): Double {
-        return amount * rateProvider.getRateForQuotation(dollarQuotation)
+    ): Pesos {
+        return Pesos(dollars.amount * rateProvider.getRateForQuotation(dollarQuotation))
     }
 
     fun toDollars(
-        amount: Double,
+        pesos: Pesos,
         dollarQuotation: Quotation,
-    ): Double {
-        return amount / rateProvider.getRateForQuotation(dollarQuotation)
+    ): Dollars {
+        return Dollars(pesos.amount / rateProvider.getRateForQuotation(dollarQuotation))
     }
 
     fun toHistoricPesos(
-        amount: Double,
+        dollars: Dollars,
         quotation: Quotation,
         date: LocalDate,
-    ): Double {
-        return amount * rateProvider.getHistoricRateForQuotation(quotation, date)
+    ): Pesos {
+        return Pesos(dollars.amount * rateProvider.getHistoricRateForQuotation(quotation, date))
     }
 
     fun toHistoricDollar(
-        amount: Double,
+        pesos: Pesos,
         quotation: Quotation,
         date: LocalDate,
-    ): Double {
-        return amount / rateProvider.getHistoricRateForQuotation(quotation, date)
+    ): Dollars {
+        return Dollars(pesos.amount / rateProvider.getHistoricRateForQuotation(quotation, date))
     }
 }

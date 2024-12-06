@@ -25,54 +25,54 @@ class DollarCalculatorTest {
     fun `001 convert one dollar to pesos at CCL rate 100`() {
         val calculator = DollarCalculator(MockRateProvider(rateMap, historicRateMap))
 
-        val result = calculator.toPesos(amount = 1.0, Quotation.CCL)
+        val result = calculator.toPesos(dollars = Dollars(1.0), Quotation.CCL)
 
-        assertEquals(100.0, result)
+        assertEquals(Pesos(100.0), result)
     }
 
     @Test
     fun `002 convert two dollars to pesos at CCL rate 100`() {
         val calculator = DollarCalculator(MockRateProvider(rateMap, historicRateMap))
 
-        val result = calculator.toPesos(amount = 2.0, Quotation.CCL)
+        val result = calculator.toPesos(dollars = Dollars(2.0), Quotation.CCL)
 
-        assertEquals(200.0, result)
+        assertEquals(Pesos(200.0), result)
     }
 
     @Test
     fun `003 convert 100 pesos to dollars at CCL rate 100`() {
         val calculator = DollarCalculator(MockRateProvider(rateMap, historicRateMap))
 
-        val result = calculator.toDollars(amount = 100.0, Quotation.CCL)
+        val result = calculator.toDollars(pesos = Pesos(100.0), Quotation.CCL)
 
-        assertEquals(1.0, result)
+        assertEquals(Dollars(1.0), result)
     }
 
     @Test
     fun `004 convert 200 pesos to dollars at CCL rate 100`() {
         val calculator = DollarCalculator(MockRateProvider(rateMap, historicRateMap))
 
-        val result = calculator.toDollars(amount = 200.0, Quotation.CCL)
+        val result = calculator.toDollars(pesos = Pesos(200.0), Quotation.CCL)
 
-        assertEquals(2.0, result)
+        assertEquals(Dollars(2.0), result)
     }
 
     @Test
     fun `005 convert 1 dollar to pesos at Blue rate 200`() {
         val calculator = DollarCalculator(MockRateProvider(rateMap, historicRateMap))
 
-        val result = calculator.toPesos(amount = 1.0, Quotation.BLUE)
+        val result = calculator.toPesos(dollars = Dollars(1.0), Quotation.BLUE)
 
-        assertEquals(200.0, result)
+        assertEquals(Pesos(200.0), result)
     }
 
     @Test
     fun `006 convert 200 dollar to pesos at Blue rate 200`() {
         val calculator = DollarCalculator(MockRateProvider(rateMap, historicRateMap))
 
-        val result = calculator.toDollars(amount = 200.0, Quotation.BLUE)
+        val result = calculator.toDollars(pesos = Pesos(200.0), Quotation.BLUE)
 
-        assertEquals(1.0, result)
+        assertEquals(Dollars(1.0), result)
     }
 
     @Test
@@ -80,9 +80,9 @@ class DollarCalculatorTest {
         val calculator = DollarCalculator(MockRateProvider(rateMap, historicRateMap))
         val date = date1
 
-        val result = calculator.toHistoricPesos(amount = 1.0, Quotation.CCL, date = date)
+        val result = calculator.toHistoricPesos(dollars = Dollars(1.0), Quotation.CCL, date = date)
 
-        assertEquals(100.0, result)
+        assertEquals(Pesos(100.0), result)
     }
 
     @Test
@@ -90,9 +90,9 @@ class DollarCalculatorTest {
         val calculator = DollarCalculator(MockRateProvider(rateMap, historicRateMap))
         val date = date2
 
-        val result = calculator.toHistoricPesos(amount = 1.0, Quotation.CCL, date = date)
+        val result = calculator.toHistoricPesos(dollars = Dollars(1.0), Quotation.CCL, date = date)
 
-        assertEquals(300.0, result)
+        assertEquals(Pesos(300.0), result)
     }
 
     @Test
@@ -100,9 +100,9 @@ class DollarCalculatorTest {
         val calculator = DollarCalculator(MockRateProvider(rateMap, historicRateMap))
         val date = date1
 
-        val result = calculator.toHistoricDollar(amount = 100.0, Quotation.CCL, date = date)
+        val result = calculator.toHistoricDollar(pesos = Pesos(100.0), Quotation.CCL, date = date)
 
-        assertEquals(1.0, result)
+        assertEquals(Dollars(1.0), result)
     }
 
     @Test
@@ -110,8 +110,8 @@ class DollarCalculatorTest {
         val calculator = DollarCalculator(MockRateProvider(rateMap, historicRateMap))
         val date = date2
 
-        val result = calculator.toHistoricDollar(amount = 300.0, Quotation.CCL, date = date)
+        val result = calculator.toHistoricDollar(pesos = Pesos(300.0), Quotation.CCL, date = date)
 
-        assertEquals(1.0, result)
+        assertEquals(Dollars(1.0), result)
     }
 }

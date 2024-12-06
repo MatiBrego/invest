@@ -1,6 +1,8 @@
 package com.invest.rest.route
 
 import com.invest.currency.core.DollarCalculator
+import com.invest.currency.core.Dollars
+import com.invest.currency.core.Pesos
 import com.invest.currency.core.Quotation
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.RestController
@@ -16,14 +18,14 @@ class CurrencyRoute
             amount: Double,
             quotation: Quotation,
         ): Double {
-            return dollarCalculator.toDollars(amount, quotation)
+            return dollarCalculator.toDollars(Pesos(amount), quotation).amount
         }
 
         override fun toPeso(
             amount: Double,
             quotation: Quotation,
         ): Double {
-            return dollarCalculator.toPesos(amount, quotation)
+            return dollarCalculator.toPesos(Dollars(amount), quotation).amount
         }
 
         override fun toHistoricDollar(
@@ -31,7 +33,7 @@ class CurrencyRoute
             quotation: Quotation,
             date: LocalDate,
         ): Double {
-            return dollarCalculator.toHistoricDollar(amount, quotation, date)
+            return dollarCalculator.toHistoricDollar(Pesos(amount), quotation, date).amount
         }
 
         override fun toHistoricPeso(
@@ -39,6 +41,6 @@ class CurrencyRoute
             quotation: Quotation,
             date: LocalDate,
         ): Double {
-            return dollarCalculator.toHistoricPesos(amount, quotation, date)
+            return dollarCalculator.toHistoricPesos(Dollars(amount), quotation, date).amount
         }
     }
