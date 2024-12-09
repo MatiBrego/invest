@@ -52,4 +52,14 @@ class RemoteRateProviderTest {
 
         println(result)
     }
+
+    @Test
+    fun `006 today's rate for CCL with historic function`() {
+        val remoteRateProvider = RemoteRateProvider()
+        val date = LocalDate.now().plusDays(1)
+
+        val result = remoteRateProvider.getHistoricRateForQuotation(Quotation.CCL, date)
+
+        println(result)
+    }
 }

@@ -13,7 +13,15 @@ import kotlin.test.assertEquals
 class PortfolioTest {
     private val dollarCCLRate = 100.0
     private val rateMap = mapOf(Quotation.CCL to dollarCCLRate)
-    private val historicRateMap = mapOf<Quotation, Map<LocalDate, Double>>()
+
+    private val date = LocalDate.of(2002, 10, 1)
+    private val historicRateMap =
+        mapOf<Quotation, Map<LocalDate, Double>>(
+            Quotation.CCL to
+                mapOf(
+                    date to dollarCCLRate,
+                ),
+        )
 
     private val mockDollarCalculator = DollarCalculator(MockRateProvider(rateMap, historicRateMap))
 
@@ -45,7 +53,7 @@ class PortfolioTest {
     fun `003 portfolio with 10 dollars worth of stocks should return 10 valuation`() {
         val portfolio =
             Portfolio(
-                holdings = listOf(Stock("SPY", 10, Dollars(1.0))),
+                holdings = listOf(Stock("SPY", 10, Dollars(1.0), date)),
                 operations = listOf(),
                 dollarCalculator = mockDollarCalculator,
             )
@@ -69,8 +77,8 @@ class PortfolioTest {
     fun `005 portfolio with stock that didn't change price should return ROI of 0`() {
         val portfolio =
             Portfolio(
-                holdings = listOf(Stock("SPY", 10, Dollars(2.0))),
-                operations = listOf(Stock("SPY", 10, Dollars(2.0))),
+                holdings = listOf(Stock("SPY", 10, Dollars(2.0), date)),
+                operations = listOf(Stock("SPY", 10, Dollars(2.0), date)),
                 dollarCalculator = mockDollarCalculator,
             )
 
@@ -81,8 +89,8 @@ class PortfolioTest {
     fun `006 portfolio with stock that doubled price should return ROI of 1`() {
         val portfolio =
             Portfolio(
-                holdings = listOf(Stock("SPY", 10, Dollars(2.0))),
-                operations = listOf(Stock("SPY", 10, Dollars(1.0))),
+                holdings = listOf(Stock("SPY", 10, Dollars(2.0), date)),
+                operations = listOf(Stock("SPY", 10, Dollars(1.0), date)),
                 dollarCalculator = mockDollarCalculator,
             )
 
@@ -93,8 +101,8 @@ class PortfolioTest {
     fun `007 portfolio with stock that increased price by half should return ROI of 0,5`() {
         val portfolio =
             Portfolio(
-                holdings = listOf(Stock("SPY", 10, Dollars(1.5))),
-                operations = listOf(Stock("SPY", 10, Dollars(1.0))),
+                holdings = listOf(Stock("SPY", 10, Dollars(1.5), date)),
+                operations = listOf(Stock("SPY", 10, Dollars(1.0), date)),
                 dollarCalculator = mockDollarCalculator,
             )
 
