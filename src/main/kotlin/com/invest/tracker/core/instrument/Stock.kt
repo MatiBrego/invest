@@ -8,10 +8,10 @@ import com.invest.currency.core.Quotation
 import java.time.LocalDate
 
 class Stock(
-    private val ticket: String,
-    private val quantity: Int,
-    private val price: Money,
-    private val date: LocalDate? = null,
+    val ticket: String,
+    val quantity: Int,
+    val price: Money,
+    val date: LocalDate? = null,
 ) : Instrument {
     override fun getValuation(dollarCalculator: DollarCalculator): Dollars {
         when (price) {
