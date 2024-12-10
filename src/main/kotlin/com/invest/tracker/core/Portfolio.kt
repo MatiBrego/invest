@@ -5,8 +5,8 @@ import com.invest.currency.core.Dollars
 import com.invest.tracker.core.instrument.Instrument
 
 class Portfolio(
-    private val holdings: List<Instrument>,
-    private val operations: List<Instrument>,
+    val holdings: List<Instrument>,
+    val operations: List<Instrument>,
     private val dollarCalculator: DollarCalculator,
 ) {
     fun getTotalValuation(): Dollars {

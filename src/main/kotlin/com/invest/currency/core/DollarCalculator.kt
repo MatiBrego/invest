@@ -7,16 +7,16 @@ class DollarCalculator(
 ) {
     fun toPesos(
         dollars: Dollars,
-        dollarQuotation: Quotation,
+        quotation: Quotation,
     ): Pesos {
-        return Pesos(dollars.amount * rateProvider.getRateForQuotation(dollarQuotation))
+        return Pesos(dollars.amount * rateProvider.getRateForQuotation(quotation))
     }
 
     fun toDollars(
         pesos: Pesos,
-        dollarQuotation: Quotation,
+        quotation: Quotation,
     ): Dollars {
-        return Dollars(pesos.amount / rateProvider.getRateForQuotation(dollarQuotation))
+        return Dollars(pesos.amount / rateProvider.getRateForQuotation(quotation))
     }
 
     fun toHistoricPesos(

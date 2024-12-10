@@ -12,8 +12,8 @@ import java.time.LocalDate
 import kotlin.test.assertEquals
 
 class InstrumentTest {
-    private val dollarCCLRate = 100.0
-    private val rateMap = mapOf(Quotation.CCL to dollarCCLRate)
+    private val dollarCCLRateToday = 200.0
+    private val rateMap = mapOf(Quotation.CCL to dollarCCLRateToday)
 
     private val date1 = LocalDate.of(2002, 10, 1)
     private val date2 = LocalDate.of(2002, 10, 2)
@@ -41,7 +41,7 @@ class InstrumentTest {
         val amountPesos = 1000.0
         val cash = Cash(Pesos(amountPesos))
 
-        val expected = Dollars(amountPesos / dollarCCLRate)
+        val expected = Dollars(amountPesos / dollarCCLRateToday)
         assertEquals(expected, cash.getValuation(dollarCalculator))
     }
 
@@ -56,12 +56,12 @@ class InstrumentTest {
     }
 
     @Test
-    fun `004 _ Stock can be from pesos`() {
+    fun `004 _ Stock from pesos without date should use today's rate`() {
         val pricePesos = 30000.0
         val quantity = 2
-        val stock = Stock("SPY", quantity, Pesos(pricePesos), date1)
+        val stock = Stock("SPY", quantity, Pesos(pricePesos))
 
-        val expected = Dollars((pricePesos * quantity) / dollarCCLRate)
+        val expected = Dollars((pricePesos * quantity) / dollarCCLRateToday)
         assertEquals(expected, stock.getValuation(dollarCalculator))
     }
 

@@ -11,17 +11,24 @@ class Stock(
     private val ticket: String,
     private val quantity: Int,
     private val price: Money,
-    private val date: LocalDate,
+    private val date: LocalDate? = null,
 ) : Instrument {
     override fun getValuation(dollarCalculator: DollarCalculator): Dollars {
-        return when (price) {
-            is Dollars -> price * quantity.toDouble()
-            is Pesos ->
-                dollarCalculator.toHistoricDollar(
+        when (price) {
+            is Dollars -> return price * quantity.toDouble()
+            is Pesos -> {
+                if (date != null) {
+                    return dollarCalculator.toHistoricDollar(
+                        pesos = price * quantity.toDouble(),
+                        quotation = Quotation.CCL,
+                        date = date,
+                    )
+                }
+                return dollarCalculator.toDollars(
                     pesos = price * quantity.toDouble(),
                     quotation = Quotation.CCL,
-                    date = date,
                 )
+            }
         }
     }
 }
