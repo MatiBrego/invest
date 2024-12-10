@@ -1,4 +1,4 @@
-package com.invest.tracker.builder
+package com.invest.tracker.builder.aggregator
 
 import com.invest.tracker.core.instrument.Instrument
 

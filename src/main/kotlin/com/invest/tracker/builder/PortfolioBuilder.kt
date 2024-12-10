@@ -1,6 +1,7 @@
 package com.invest.tracker.builder
 
 import com.invest.currency.core.DollarCalculator
+import com.invest.tracker.builder.aggregator.InstrumentAggregator
 import com.invest.tracker.core.Portfolio
 import com.invest.tracker.core.instrument.Instrument
 
@@ -17,7 +18,7 @@ class PortfolioBuilder(
         )
     }
 
-    private fun calculateHoldings(): List<Instrument>  {
+    private fun calculateHoldings(): List<Instrument> {
         var aggregatedOperations = operations
         for (aggregator in aggregators) {
             aggregatedOperations = aggregator.aggregate(aggregatedOperations)

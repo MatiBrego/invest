@@ -1,4 +1,4 @@
-package com.invest.tracker.builder
+package com.invest.tracker.builder.aggregator
 
 import com.invest.currency.core.DollarCalculator
 import com.invest.currency.core.Dollars

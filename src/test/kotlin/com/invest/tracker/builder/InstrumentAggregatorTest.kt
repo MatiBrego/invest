@@ -4,6 +4,8 @@ import com.invest.currency.core.DollarCalculator
 import com.invest.currency.core.Dollars
 import com.invest.currency.core.MockRateProvider
 import com.invest.currency.core.Quotation
+import com.invest.tracker.builder.aggregator.CashAggregator
+import com.invest.tracker.builder.aggregator.StockAggregator
 import com.invest.tracker.core.instrument.Cash
 import com.invest.tracker.core.instrument.Stock
 import org.junit.jupiter.api.Test
