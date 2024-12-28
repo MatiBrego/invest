@@ -1,4 +1,4 @@
-package com.invest.currency.remote
+package com.invest.currency.provider
 
 import com.invest.currency.core.Quotation
 import java.time.LocalDate
@@ -11,7 +11,7 @@ class RemoteRateProviderTest {
     fun `001 provide today's rate for CLL`() {
         val remoteRateProvider = RemoteRateProvider()
 
-        val result = remoteRateProvider.getRateForQuotation(Quotation.CCL)
+        val result = remoteRateProvider.getLastRateForQuotation(Quotation.CCL)
 
         println(result)
     }
@@ -20,7 +20,7 @@ class RemoteRateProviderTest {
     fun `002 provide today's rate for Blue`() {
         val remoteRateProvider = RemoteRateProvider()
 
-        val result = remoteRateProvider.getRateForQuotation(Quotation.BLUE)
+        val result = remoteRateProvider.getLastRateForQuotation(Quotation.BLUE)
 
         println(result)
     }
@@ -29,7 +29,7 @@ class RemoteRateProviderTest {
     fun `003 provide today's rate for Official`() {
         val remoteRateProvider = RemoteRateProvider()
 
-        val result = remoteRateProvider.getRateForQuotation(Quotation.OFFICIAL)
+        val result = remoteRateProvider.getLastRateForQuotation(Quotation.OFFICIAL)
 
         println(result)
     }
@@ -38,7 +38,7 @@ class RemoteRateProviderTest {
     fun `004 provide today's rate for Mep`() {
         val remoteRateProvider = RemoteRateProvider()
 
-        val result = remoteRateProvider.getRateForQuotation(Quotation.EXCHANGE)
+        val result = remoteRateProvider.getLastRateForQuotation(Quotation.EXCHANGE)
 
         println(result)
     }

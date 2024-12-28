@@ -6,7 +6,7 @@ class MockRateProvider(
     private val quotationRateMap: Map<Quotation, Double>,
     private val historicQuotationRateMap: Map<Quotation, Map<LocalDate, Double>>,
 ) : RateProvider {
-    override fun getRateForQuotation(quotation: Quotation): Double {
+    override fun getLastRateForQuotation(quotation: Quotation): Double {
         return quotationRateMap.getOrElse(quotation) {
             throw IllegalArgumentException("Quotation $quotation not found")
         }

@@ -9,14 +9,14 @@ class DollarCalculator(
         dollars: Dollars,
         quotation: Quotation,
     ): Pesos {
-        return Pesos(dollars.amount * rateProvider.getRateForQuotation(quotation))
+        return Pesos(dollars.amount * rateProvider.getLastRateForQuotation(quotation))
     }
 
     fun toDollars(
         pesos: Pesos,
         quotation: Quotation,
     ): Dollars {
-        return Dollars(pesos.amount / rateProvider.getRateForQuotation(quotation))
+        return Dollars(pesos.amount / rateProvider.getLastRateForQuotation(quotation))
     }
 
     fun toHistoricPesos(

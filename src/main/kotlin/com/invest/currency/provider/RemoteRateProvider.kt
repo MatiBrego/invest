@@ -1,4 +1,4 @@
-package com.invest.currency.remote
+package com.invest.currency.provider
 
 import com.invest.currency.core.Quotation
 import com.invest.currency.core.RateProvider
@@ -22,7 +22,7 @@ class RemoteRateProvider(
 
     private val dateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd")
 
-    override fun getRateForQuotation(quotation: Quotation): Double {
+    override fun getLastRateForQuotation(quotation: Quotation): Double {
         val getUrl = "$dollarApiBaseUrl/${quotationAdapter[quotation]}"
         val response = restTemplate.getForEntity<DollarApiResponse>(getUrl)
         return response.body!!.venta

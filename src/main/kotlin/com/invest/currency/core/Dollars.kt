@@ -34,4 +34,8 @@ class Dollars(val amount: Double) : Money {
     override fun hashCode(): Int {
         return amount.hashCode()
     }
+
+    override fun toString(): String {
+        return amount.toString() + " USD"
+    }
 }
