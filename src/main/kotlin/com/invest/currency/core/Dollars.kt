@@ -1,5 +1,7 @@
 package com.invest.currency.core
 
+import kotlin.math.roundToInt
+
 class Dollars(val amount: Double) : Money {
     operator fun plus(other: Dollars): Dollars {
         return Dollars(amount + other.amount)
@@ -36,6 +38,6 @@ class Dollars(val amount: Double) : Money {
     }
 
     override fun toString(): String {
-        return amount.toString() + " USD"
+        return amount.roundToInt().toString() + " USD"
     }
 }

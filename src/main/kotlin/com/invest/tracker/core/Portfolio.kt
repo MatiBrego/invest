@@ -21,6 +21,10 @@ class Portfolio(
         return result
     }
 
+    fun getEarnedAmount(): Dollars {
+        return this.getTotalValuation() - this.getTotalCost()
+    }
+
     private fun getTotalCost(): Dollars {
         val totalCost = operations.sumOf { it.getValuation(dollarCalculator).amount }
         return Dollars(totalCost)

@@ -31,6 +31,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("com.h2database:h2")
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
+    implementation("org.postgresql:postgresql:42.6.0")
+    implementation("com.opencsv:opencsv:5.7.1")
 }
 
 kotlin {
