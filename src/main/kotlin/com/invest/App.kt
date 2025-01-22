@@ -26,14 +26,14 @@ fun main(args: Array<String>) {
 
     val priceMap =
         mapOf(
-            "SPY" to Dollars(29.45),
+            "SPY" to Dollars(31.05),
         )
 
     val startingInstrument =
         Stock(
             ticket = "SPY",
             quantity = 346,
-            price = priceMap["SPY"]!!,
+            price = Dollars(29.45),
             date = startingDate,
         )
 
@@ -47,7 +47,7 @@ fun main(args: Array<String>) {
 
         val portfolio = PortfolioBuilder(operations, dollarCalculator, aggregators).build()
 
-        val roi = Math.round(portfolio.getROI() * 10000.0) / 10.0
+        val roi = Math.round(portfolio.getROI() * 10000.0) / 100.0
 
         println("Valuation: ${portfolio.getTotalValuation()}")
         println("Earned: ${portfolio.getEarnedAmount()}")
